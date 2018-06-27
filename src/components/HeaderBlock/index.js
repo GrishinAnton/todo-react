@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function HeaderBlock(){
+export default function HeaderBlock({ submit, input, value }){
 
     return (
         <Header>
             <InputCheckbox type="checkbox" />
-            <InputText type="text" placeholder="Yo Yo" />
+            <Form onSubmit={submit} onChange={input}>
+                <InputText type="text" value={value} name="task" placeholder="Yo Yo" />
+            </Form>
         </Header>
     )
 
@@ -28,9 +30,15 @@ const InputCheckbox = styled.input`
     height: 48px;
 `;
 
+
+const Form = styled.form `
+    width: 100%;
+`;
+
 const InputText = styled.input`
     padding: 0; 
     padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
     height: 46px;
 

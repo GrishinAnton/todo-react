@@ -3,17 +3,41 @@ import HeaderBlock from 'components/HeaderBlock/';
 import styled from 'styled-components';
 import TaskList from 'components/TaskList';
 import Footer from 'components/Footer';
+import moment from 'moment';
 
 export default class Todo extends React.Component {
+
+    state = {
+        tasks: [
+            {
+                title: '',
+                complited: '',
+                id: '',
+            }
+        ],
+        mainTaskValue: ''
+    }
+
     render() {
         return (
             <Todos>
                 <Title>todos</Title>
-                <HeaderBlock />
+                <HeaderBlock value={this.state.mainTaskValue} submit={this.onSubmitHandler} input={this.onInputHandler}/>
                 <TaskList />
                 <Footer />                
             </Todos>
         )
+    }
+
+    onSubmitHandler = e => {
+        e.preventDefault()
+        console.log('++213123+++'); 
+        this.setState({ mainTaskValue: '' })          
+        
+    }   
+    
+    onInputHandler = e => {
+        this.setState({ mainTaskValue: e.target.value})
     }
 }
 
