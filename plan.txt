@@ -26,3 +26,6 @@ http://todomvc.com/examples/react/#/completed
 
 Бибилиотека
 http://momentjs.com/
+
+http://chenglou.github.io/react-motion/demos/demo3-todomvc-list-transition/
+https://github.com/chenglou/react-motion

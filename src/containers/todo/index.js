@@ -13,6 +13,9 @@ export default class Todo extends React.Component {
 
     render() {
 
+        console.log(this.state);
+        
+
         return (
             <Todos>
                 <Title>todos</Title>
@@ -22,7 +25,8 @@ export default class Todo extends React.Component {
                     input={this.onInputHandler}/>
                 <TaskList 
                     list={this.state.tasks} 
-                    deleteItem={this.deleteTaskhandler} />
+                    deleteItem={this.deleteTaskhandler}
+                    checked={this.onTaskCheckedhandler} />
                 <Footer />                
             </Todos>
         )
@@ -56,6 +60,15 @@ export default class Todo extends React.Component {
             }
         }
         this.setState({ tasks: state})    
+    }
+    onTaskCheckedhandler = (id) => {
+        var state = this.state.tasks
+        for (var i = 0; i < state.length; i++) {
+            if (state[i].id === id) {
+                state[i].complited = !state[i].complited;
+            }
+        }
+        this.setState({ tasks: state }) 
     }
 }
 

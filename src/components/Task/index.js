@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css'
 
-export default function Task({ title, deleteItem, id }) {     
-
+export default function Task({ title, deleteItem, id, checked, complited }) {     
+   
     return (
         <Item>
-            <InputCheckbox className="main-section__checkbox" type="checkbox" />
-            <Label className="main-section_label">{title}</Label>
+            <InputCheckbox onChange={() => checked(id)} className="main-section__checkbox" type="checkbox" />
+            <Label complited={complited} className="main-section_label">{title}</Label>
             <ButtonDelete className="main-section__close" onClick={() => deleteItem(id)}></ButtonDelete>
             <InputTask type="text" className="main-section__task-edit" />
         </Item>
@@ -41,6 +41,7 @@ const Label = styled.label `
     margin-right: auto;
     ${baseFonts}
     z-index: 1;
+    text-decoration: ${props => props.complited && 'line-through'};
 `;
 
 const ButtonDelete = styled.button `

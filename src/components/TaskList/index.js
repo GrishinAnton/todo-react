@@ -3,13 +3,19 @@ import Task from 'components/Task'
 import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css'
 
-export default function taskList({ list = [], deleteItem }) {  
+export default function taskList({ list = [], deleteItem, checked }) {  
 
     return(
         <MainSection>
             <List>
                 {list.map(item => (
-                    <Task key={item.id} title={item.title} deleteItem={deleteItem} id={item.id} />
+                    <Task 
+                        key={item.id} 
+                        title={item.title}
+                        deleteItem={deleteItem} 
+                        id={item.id}
+                        checked={checked}
+                        complited={item.complited} />
                 ))}                
             </List>
         </MainSection> 
