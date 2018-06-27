@@ -3,19 +3,21 @@ import Task from 'components/Task'
 import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css'
 
-export default function taskList() {
+export default function taskList({ list = [], deleteItem }) {  
 
     return(
         <MainSection>
             <List>
-                <Task />
+                {list.map(item => (
+                    <Task key={item.id} title={item.title} deleteItem={deleteItem} id={item.id} />
+                ))}                
             </List>
         </MainSection> 
     )
 }
 
 const MainSection = styled.section `
-    height: 48px;
+   
 `;
 
 const List = styled.ul `

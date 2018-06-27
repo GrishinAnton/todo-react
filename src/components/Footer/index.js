@@ -29,7 +29,14 @@ export default function Footer() {
 const Footers = styled.footer `
     display: flex;
     justify-content: space-between;
-    align-items: center;    
+    align-items: center;  
+    padding-left: 5px;
+    padding-right: 5px; 
+
+
+    border-left: 1px solid #2c2c2c; 
+    border-right: 1px solid #2c2c2c; 
+    border-bottom: 1px solid #2c2c2c; 
 `;
 
 const FooterCount = styled.div `

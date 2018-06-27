@@ -16,8 +16,13 @@ export default class Todo extends React.Component {
         return (
             <Todos>
                 <Title>todos</Title>
-                <HeaderBlock value={this.state.mainTaskValue} submit={this.onSubmitHandler} input={this.onInputHandler}/>
-                <TaskList />
+                <HeaderBlock 
+                    value={this.state.mainTaskValue} 
+                    submit={this.onSubmitHandler} 
+                    input={this.onInputHandler}/>
+                <TaskList 
+                    list={this.state.tasks} 
+                    deleteItem={this.deleteTaskhandler} />
                 <Footer />                
             </Todos>
         )
@@ -40,6 +45,17 @@ export default class Todo extends React.Component {
     
     onInputHandler = e => {        
         this.setState({ mainTaskValue: e.target.value})
+    }
+
+    deleteTaskhandler = (id) => {
+        var state = this.state.tasks
+        for (var i = 0; i < state.length; i++){
+            if (state[i].id === id) {
+                state.splice(i,1)
+                
+            }
+        }
+        this.setState({ tasks: state})    
     }
 }
 

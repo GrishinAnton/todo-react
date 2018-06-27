@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css'
 
-export default function Task() {
+export default function Task({ title, deleteItem, id }) {     
 
     return (
         <Item>
             <InputCheckbox className="main-section__checkbox" type="checkbox" />
-            <Label className="main-section_label">taskTask</Label>
-            <ButtonDelete className="main-section__close"></ButtonDelete>
+            <Label className="main-section_label">{title}</Label>
+            <ButtonDelete className="main-section__close" onClick={() => deleteItem(id)}></ButtonDelete>
             <InputTask type="text" className="main-section__task-edit" />
         </Item>
     )
@@ -22,6 +22,10 @@ const Item = styled.li `
     position: relative;
 
     border-bottom: 1px solid #2c2c2c;
+
+    &:hover button {
+        opacity: 1;
+    }
 
 `;
 
@@ -41,7 +45,7 @@ const Label = styled.label `
 
 const ButtonDelete = styled.button `
     position: relative;
-
+    
     width: 40px;
     height: 40px;
     margin: auto 0;
@@ -50,8 +54,9 @@ const ButtonDelete = styled.button `
     border: none;
     color: #cc9a9a;
     font-size: 30px;
-    transition: color 0.2s ease-out;
+    transition: all 0.2s ease-out;
     outline: none;
+    opacity: 0;
 
     &::after {
         content: '×';
