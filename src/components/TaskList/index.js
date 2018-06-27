@@ -1,17 +1,25 @@
-import React from 'react'
+import React from 'react';
+import Task from 'components/Task'
+import styled from 'styled-components';
+import { baseColors, baseFonts } from 'css'
 
 export default function taskList() {
 
     return(
-        <section className="main-section">
-            <ul>
-                <li>
-                    <input className="main-section__checkbox" type="checkbox" />
-                    <label className="main-section_label"></label>
-                    <button className="main-section__close"></button>
-                    <input type="text" className="main-section__task-edit" />
-                </li>
-            </ul>
-        </section> 
+        <MainSection>
+            <List>
+                <Task />
+            </List>
+        </MainSection> 
     )
 }
+
+const MainSection = styled.section `
+    height: 48px;
+`;
+
+const List = styled.ul `
+    text-align: left;
+    border-left: 1px solid ${baseColors.grey};
+    border-right: 1px solid ${baseColors.grey};
+`;

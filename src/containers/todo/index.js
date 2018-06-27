@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderBlock from 'components/HeaderBlock/';
 import styled from 'styled-components';
 import TaskList from 'components/TaskList';
-import Footer from 'components/Footer'
+import Footer from 'components/Footer';
 
 export default class Todo extends React.Component {
     render() {
