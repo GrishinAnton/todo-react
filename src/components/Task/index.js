@@ -19,9 +19,8 @@ export default function Task({ title, deleteItem, id, checked, complited, input,
                 onClick={() => deleteItem(id)}>
             </ButtonDelete>
             <InputForm 
-                onSubmit={(e) => submit(e,id)} 
-                onChange={(e) => input(e,id)}>
-                <InputTask type="text" onBlur={(e) => input(e, id)} name="task" className="main-section__task-edit" />
+                onSubmit={(e) => submit(e,id)}>
+                <InputTask type="text" onBlur={(e) => input(e, id)} onChange={(e) => input(e, id)} value={title} name="task" className="main-section__task-edit" />
             </InputForm>
         </Item>
     )
@@ -89,6 +88,8 @@ const InputForm = styled.form`
 const InputTask = styled.input `
     width: 100%;
     height: 100%;
+
+    ${baseFonts}
 
     border: none;
     outline: none;

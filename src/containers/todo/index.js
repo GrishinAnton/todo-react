@@ -21,7 +21,7 @@ export default class Todo extends React.Component {
                 <Title>todos</Title>
                 <HeaderBlock 
                     value={this.state.mainTaskValue} 
-                    submit={this.onSubmitHandler} 
+                    submit={this.onSubmitHandler}
                     input={this.onInputHandler}
                     checked={this.onAllCheckedHandler}/>
                 <TaskList 
@@ -51,9 +51,7 @@ export default class Todo extends React.Component {
 
         // }
         // this.setState({ tasks: state })
-        
     }
-
     onAllCheckedHandler = e => {       
         
         var state = [...this.state.tasks]       
@@ -82,26 +80,23 @@ export default class Todo extends React.Component {
 
     onSubmitChangeTask = (e,id) => {
         e.preventDefault()
-
-        var state = [...this.state.tasks]
+        var state = this.state.tasks
         for (var i = 0; i < state.length; i++) {
             if (state[i].id === id) {               
-                state[i].title = e.target.task.value
-                return
+                state[i].title = e.target.value
             }
             
         }
         this.setState({ tasks: state })
-        
+
     }
 
     onInputListTask = (e,id) => {
 
-        var state = [...this.state.tasks]
+        var state = this.state.tasks
         for (var i = 0; i < state.length; i++) {
             if (state[i].id === id) {
                 state[i].title = e.target.value
-                return
             }
         }
         this.setState({ tasks: state })
