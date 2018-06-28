@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Footer() {
-
+export default function Footer({ count, endWord }) {
+    
     return (
         <Footers>
             <FooterCount className="footer-count">
-                <p><span>0</span> задач</p>
+                <p><span>{count}</span> {endWord}</p>
             </FooterCount>
             <FooterList className="footer-panel">
                 <FooterItem>

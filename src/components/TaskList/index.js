@@ -1,7 +1,8 @@
 import React from 'react';
 import Task from 'components/Task'
 import styled from 'styled-components';
-import { baseColors, baseFonts } from 'css'
+import { baseColors, baseFonts } from 'css';
+import { TransitionMotion, spring, presets } from 'react-motion';
 
 export default function taskList({ list = [], deleteItem, checked }) {  
 

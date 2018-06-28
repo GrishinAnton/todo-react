@@ -6,7 +6,7 @@ export default function Task({ title, deleteItem, id, checked, complited }) {
    
     return (
         <Item>
-            <InputCheckbox onChange={() => checked(id)} className="main-section__checkbox" type="checkbox" />
+            <InputCheckbox checked={complited} onChange={() => checked(id)} className="main-section__checkbox" type="checkbox" />
             <Label complited={complited} className="main-section_label">{title}</Label>
             <ButtonDelete className="main-section__close" onClick={() => deleteItem(id)}></ButtonDelete>
             <InputTask type="text" className="main-section__task-edit" />
