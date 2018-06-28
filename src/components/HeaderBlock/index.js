@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function HeaderBlock({ submit, input, value, checked }){
+export default function HeaderBlock({ tasks, submit, input, value, checked }){
+
     
     return (
         <Header>
-            <InputCheckbox onChange={checked} type="checkbox" />
+            {tasks.length !== 0 ? <InputCheckbox onChange={checked} type="checkbox" /> : ''}      
             <Form onSubmit={submit} onChange={input}>
                 <InputText type="text" value={value} name="task" placeholder="Yo Yo" />
             </Form>

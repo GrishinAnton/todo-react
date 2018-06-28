@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css'
 
-export default function Task({ title, deleteItem, id, checked, complited, input, submit, toggle }) {     
-   
+export default function Task({ title, deleteItem, id, checked, complited, input, submit, toggle, hide, blur }) {  
+    
+  
     return (
         <Item>
             <InputCheckbox 
@@ -12,6 +13,7 @@ export default function Task({ title, deleteItem, id, checked, complited, input,
                 className="main-section__checkbox" type="checkbox" />
             <Label 
                 complited={complited} 
+                hide={hide}
                 onDoubleClick={(e) => toggle(e,id)} 
                 className="main-section_label">{title}</Label>
             <ButtonDelete 
@@ -20,7 +22,13 @@ export default function Task({ title, deleteItem, id, checked, complited, input,
             </ButtonDelete>
             <InputForm 
                 onSubmit={(e) => submit(e,id)}>
-                <InputTask type="text" onBlur={(e) => input(e, id)} onChange={(e) => input(e, id)} value={title} name="task" className="main-section__task-edit" />
+                <InputTask type="text" 
+                    onBlur={(e) => blur(e, id)} 
+                    onChange={(e) => input(e, id)} 
+                    value={title} 
+                    hide={hide}
+                    name="task" 
+                    className="main-section__task-edit" />
             </InputForm>
         </Item>
     )
@@ -54,6 +62,7 @@ const Label = styled.label `
     ${baseFonts}
     z-index: 1;
     text-decoration: ${props => props.complited && 'line-through'};
+    display: ${props => props.hide && 'none'};
 `;
 
 const ButtonDelete = styled.button `
@@ -90,6 +99,9 @@ const InputTask = styled.input `
     height: 100%;
 
     ${baseFonts}
+    display: none;
+
+    display: ${props => props.hide && 'block'};
 
     border: none;
     outline: none;

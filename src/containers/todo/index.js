@@ -20,6 +20,7 @@ export default class Todo extends React.Component {
             <Todos>
                 <Title>todos</Title>
                 <HeaderBlock 
+                    tasks={this.state.tasks}
                     value={this.state.mainTaskValue} 
                     submit={this.onSubmitHandler}
                     input={this.onInputHandler}
@@ -30,8 +31,8 @@ export default class Todo extends React.Component {
                     checked={this.onTaskCheckedhandler}
                     submit={this.onSubmitChangeTask}
                     input={this.onInputListTask}
-                    toggle={this.onToggleLableInput}
-                    
+                    toggle={this.onToggleLableInput}  
+                    blur={this.onInputBlur}                  
                     />
                 <Footer
                     tasks={this.state.tasks}
@@ -41,16 +42,27 @@ export default class Todo extends React.Component {
         )
     }
 
-    onToggleLableInput = (e, id) => {
-        // var state = this.state.tasks
-        // for (var i = 0; i < state.length; i++) {
-        //     if (state[i].id === id) {
-        //         state[i].title = e.target.task.value
-        //         return
-        //     }
+    onInputBlur = (e, id) => {
+        var state = this.state.tasks
+        for (var i = 0; i < state.length; i++) {
+            if (state[i].id === id) {
+                state[i].hide = false
+                e.target.value !== '' ? state[i].title = e.target.value : state.splice(i,1);  
+            }
 
-        // }
-        // this.setState({ tasks: state })
+        }
+        this.setState({ tasks: state })
+    }
+
+    onToggleLableInput = (e, id) => {
+        var state = this.state.tasks
+        for (var i = 0; i < state.length; i++) {
+            if (state[i].id === id) {
+                state[i].hide = true
+            }
+
+        }
+        this.setState({ tasks: state })
     }
     onAllCheckedHandler = e => {       
         
@@ -80,10 +92,11 @@ export default class Todo extends React.Component {
 
     onSubmitChangeTask = (e,id) => {
         e.preventDefault()
+
         var state = this.state.tasks
         for (var i = 0; i < state.length; i++) {
-            if (state[i].id === id) {               
-                state[i].title = e.target.value
+            if (state[i].id === id) {     
+                e.target.task.value !== '' ? state[i].title = e.target.task.value : state.splice(i,1);                
             }
             
         }
