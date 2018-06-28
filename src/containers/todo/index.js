@@ -16,7 +16,6 @@ export default class Todo extends React.Component {
     componentDidUpdate(prevProps, prevState) {        
         if (this.state.tasks !== prevState.tasks) {
             this.activeTaskCount()
-            
         }
     } 
 
@@ -81,7 +80,8 @@ export default class Todo extends React.Component {
                 state.splice(i,1);
             }
         }
-        this.setState({ tasks: state})    
+        this.setState({ tasks: state})
+        this.activeTaskCount()  
     }
 
     onTaskCheckedhandler = (id) => {
@@ -93,7 +93,6 @@ export default class Todo extends React.Component {
         }
         this.setState({ tasks: state }) 
         this.activeTaskCount()
-        endingWord(this.state.taskCount, 'задача', 'задачи', 'задач')
     }
 
     activeTaskCount = () => {
@@ -106,6 +105,8 @@ export default class Todo extends React.Component {
 
         this.setState({ taskCount: count });
     }
+    
+    delete
 }
 
 
