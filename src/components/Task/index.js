@@ -1,15 +1,28 @@
-import React from 'react';
+import React from 'react'; 
 import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css'
 
-export default function Task({ title, deleteItem, id, checked, complited }) {     
+export default function Task({ title, deleteItem, id, checked, complited, input, submit, toggle }) {     
    
     return (
         <Item>
-            <InputCheckbox checked={complited} onChange={() => checked(id)} className="main-section__checkbox" type="checkbox" />
-            <Label complited={complited} className="main-section_label">{title}</Label>
-            <ButtonDelete className="main-section__close" onClick={() => deleteItem(id)}></ButtonDelete>
-            <InputTask type="text" className="main-section__task-edit" />
+            <InputCheckbox 
+                checked={complited} 
+                onChange={() => checked(id)} 
+                className="main-section__checkbox" type="checkbox" />
+            <Label 
+                complited={complited} 
+                onDoubleClick={(e) => toggle(e,id)} 
+                className="main-section_label">{title}</Label>
+            <ButtonDelete 
+                className="main-section__close" 
+                onClick={() => deleteItem(id)}>
+            </ButtonDelete>
+            <InputForm 
+                onSubmit={(e) => submit(e,id)} 
+                onChange={(e) => input(e,id)}>
+                <InputTask type="text" onBlur={(e) => input(e, id)} name="task" className="main-section__task-edit" />
+            </InputForm>
         </Item>
     )
 }
@@ -64,13 +77,21 @@ const ButtonDelete = styled.button `
     }
 
 `;
-const InputTask = styled.input `
+
+const InputForm = styled.form`
     position: absolute;
     left: 44px;
     height: 47px;
     width: 85%;
 
+`;
+
+const InputTask = styled.input `
+    width: 100%;
+    height: 100%;
+
     border: none;
     outline: none;
     z-index: 0;
+
 `;

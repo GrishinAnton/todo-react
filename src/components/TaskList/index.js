@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css';
 import { TransitionMotion, spring, presets } from 'react-motion';
 
-export default function taskList({ list = [], deleteItem, checked }) {  
+export default function taskList({ list = [], deleteItem, checked, input, submit, toggle }) {  
 
     return(
         <MainSection>
@@ -16,7 +16,10 @@ export default function taskList({ list = [], deleteItem, checked }) {
                         deleteItem={deleteItem} 
                         id={item.id}
                         checked={checked}
-                        complited={item.complited} />
+                        complited={item.complited}
+                        input={input}
+                        submit={submit}
+                        toggle={toggle} />
                 ))}                
             </List>
         </MainSection> 

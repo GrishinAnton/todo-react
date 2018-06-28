@@ -31,5 +31,4 @@ http://chenglou.github.io/react-motion/demos/demo3-todomvc-list-transition/
 https://github.com/chenglou/react-motion
 
 Рефактор
-    Рефактор Подчяета итемов. Запускается в нескольуизх местах, чтобы могла пересчитываться.
     Рефактор кода подставления слов

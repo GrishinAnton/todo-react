@@ -8,12 +8,13 @@ export default class Todo extends React.Component {
 
     state = {
         tasks: [],
-        mainTaskValue: ''
+        mainTaskValue: '',
+        toggleLableInput: false
     }
 
     render() {
 
-        // console.log(this.state);
+        console.log(this.state);
 
         return (
             <Todos>
@@ -24,15 +25,33 @@ export default class Todo extends React.Component {
                     input={this.onInputHandler}
                     checked={this.onAllCheckedHandler}/>
                 <TaskList 
-                    list={this.state.tasks} 
+                    list={this.state.tasks}
                     deleteItem={this.deleteTaskhandler}
-                    checked={this.onTaskCheckedhandler} />
-                <Footer       
+                    checked={this.onTaskCheckedhandler}
+                    submit={this.onSubmitChangeTask}
+                    input={this.onInputListTask}
+                    toggle={this.onToggleLableInput}
+                    
+                    />
+                <Footer
                     tasks={this.state.tasks}
                     deleteAllTask={this.deleteAllComplitedTask}
                     />                
             </Todos>
         )
+    }
+
+    onToggleLableInput = (e, id) => {
+        // var state = this.state.tasks
+        // for (var i = 0; i < state.length; i++) {
+        //     if (state[i].id === id) {
+        //         state[i].title = e.target.task.value
+        //         return
+        //     }
+
+        // }
+        // this.setState({ tasks: state })
+        
     }
 
     onAllCheckedHandler = e => {       
@@ -60,9 +79,37 @@ export default class Todo extends React.Component {
         this.setState({ tasks: state});
         this.setState({ mainTaskValue: '' });  
     }   
+
+    onSubmitChangeTask = (e,id) => {
+        e.preventDefault()
+
+        var state = [...this.state.tasks]
+        for (var i = 0; i < state.length; i++) {
+            if (state[i].id === id) {               
+                state[i].title = e.target.task.value
+                return
+            }
+            
+        }
+        this.setState({ tasks: state })
+        
+    }
+
+    onInputListTask = (e,id) => {
+
+        var state = [...this.state.tasks]
+        for (var i = 0; i < state.length; i++) {
+            if (state[i].id === id) {
+                state[i].title = e.target.value
+                return
+            }
+        }
+        this.setState({ tasks: state })
+        
+    }
     
     onInputHandler = e => {        
-        this.setState({ mainTaskValue: e.target.value});
+        this.setState({ mainTaskValue: e.target.value });
     }
 
     deleteTaskhandler = (id) => {
@@ -72,7 +119,7 @@ export default class Todo extends React.Component {
                 state.splice(i,1);
             }
         }
-        this.setState({ tasks: state})
+        this.setState({ tasks: state })
     }
 
     onTaskCheckedhandler = (id) => {
