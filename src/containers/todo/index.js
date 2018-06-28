@@ -3,21 +3,13 @@ import HeaderBlock from 'components/HeaderBlock/';
 import styled from 'styled-components';
 import TaskList from 'components/TaskList';
 import Footer from 'components/Footer';
-import idGenerate from 'utils/idGenerate';
-import endingWord from 'utils/endingWord'
+import { idGenerate}  from 'helpers';
 export default class Todo extends React.Component {
 
     state = {
         tasks: [],
-        mainTaskValue: '',
-        taskCount: 0
+        mainTaskValue: ''
     }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.tasks !== prevState.tasks) {
-            this.activeTaskCount()
-        }
-    } 
 
     render() {
 
@@ -35,9 +27,8 @@ export default class Todo extends React.Component {
                     list={this.state.tasks} 
                     deleteItem={this.deleteTaskhandler}
                     checked={this.onTaskCheckedhandler} />
-                <Footer 
-                    count={this.state.taskCount} 
-                    endWord={endingWord(this.state.taskCount, 'задача', 'задачи', 'задач')}
+                <Footer       
+                    tasks={this.state.tasks}
                     deleteAllTask={this.deleteAllComplitedTask}
                     />                
             </Todos>
@@ -53,8 +44,6 @@ export default class Todo extends React.Component {
         })
 
         this.setState({ tasks: state });
-
-        
     }
 
     onSubmitHandler = e => {
@@ -84,7 +73,6 @@ export default class Todo extends React.Component {
             }
         }
         this.setState({ tasks: state})
-        this.activeTaskCount()  
     }
 
     onTaskCheckedhandler = (id) => {
@@ -95,18 +83,6 @@ export default class Todo extends React.Component {
             }
         }
         this.setState({ tasks: state }) 
-        this.activeTaskCount()
-    }
-
-    activeTaskCount = () => {
-        var state = [...this.state.tasks]
-        var count = 0
-
-        state.forEach(item => {
-            if (item.complited !== true) count++
-        });
-
-        this.setState({ taskCount: count });
     }
     
     deleteAllComplitedTask = () => {

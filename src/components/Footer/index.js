@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { countTask } from 'helpers'
+import { endingWord } from 'helpers'
 
-export default function Footer({ count, endWord, deleteAllTask }) {
-    
+export default function Footer({ tasks, deleteAllTask }) {
+    var count = countTask(tasks);
+    var endWord = endingWord(count, 'задача', 'задачи', 'задач');
+
     return (
         <Footers>
             <FooterCount className="footer-count">

@@ -1,2 +1,2 @@
 export * from 'css/baseColors';
-export * from 'css/baseFonts'
+export * from 'css/baseFonts';
