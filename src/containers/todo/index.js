@@ -13,7 +13,7 @@ export default class Todo extends React.Component {
         taskCount: 0
     }
 
-    componentDidUpdate(prevProps, prevState) {        
+    componentDidUpdate(prevProps, prevState) {
         if (this.state.tasks !== prevState.tasks) {
             this.activeTaskCount()
         }
@@ -21,8 +21,7 @@ export default class Todo extends React.Component {
 
     render() {
 
-        console.log(this.state);
-        
+        // console.log(this.state);
 
         return (
             <Todos>
@@ -36,7 +35,11 @@ export default class Todo extends React.Component {
                     list={this.state.tasks} 
                     deleteItem={this.deleteTaskhandler}
                     checked={this.onTaskCheckedhandler} />
-                <Footer count={this.state.taskCount} endWord={endingWord(this.state.taskCount, 'задача', 'задачи', 'задач')}/>                
+                <Footer 
+                    count={this.state.taskCount} 
+                    endWord={endingWord(this.state.taskCount, 'задача', 'задачи', 'задач')}
+                    deleteAllTask={this.deleteAllComplitedTask}
+                    />                
             </Todos>
         )
     }
@@ -106,7 +109,18 @@ export default class Todo extends React.Component {
         this.setState({ taskCount: count });
     }
     
-    delete
+    deleteAllComplitedTask = () => {
+        var state = this.state.tasks
+
+        for (var i = 0; i < state.length; ) {
+            if(state[i].complited === true) {
+                state.splice(i, 1);
+                i--
+            }
+            i++
+        }
+        this.setState({ tasks: state })        
+    }
 }
 
 

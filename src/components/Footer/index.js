@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Footer({ count, endWord }) {
+export default function Footer({ count, endWord, deleteAllTask }) {
     
     return (
         <Footers>
@@ -20,7 +20,7 @@ export default function Footer({ count, endWord }) {
                 </FooterItem>
             </FooterList>
             <FooterTask className="footer-task-delete">
-                <button>Удалить выполненные задачи</button>
+                <button onClick={deleteAllTask}>Удалить выполненные задачи</button>
             </FooterTask>
         </Footers>
     )
