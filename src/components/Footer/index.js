@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { countTask } from 'helpers'
 import { endingWord } from 'helpers'
 
-export default function Footer({ tasks, deleteAllTask }) {
+export default function Footer({ tasks, deleteAllTask, filter }) {
     var count = countTask(tasks);
     var endWord = endingWord(count, 'задача', 'задачи', 'задач');
 
@@ -14,13 +14,13 @@ export default function Footer({ tasks, deleteAllTask }) {
             </FooterCount>
             <FooterList className="footer-panel">
                 <FooterItem>
-                    <button>Все</button>
+                    <button onClick={() => filter('all')}>Все</button>
                 </FooterItem>
                 <FooterItem>
-                    <button>Активные</button>
+                    <button onClick={() => filter('active')}>Активные</button>
                 </FooterItem>
                 <FooterItem>
-                    <button>Завершенные</button>
+                    <button onClick={() => filter('complited')}>Завершенные</button>
                 </FooterItem>
             </FooterList>
             <FooterTask className="footer-task-delete">

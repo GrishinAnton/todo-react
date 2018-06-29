@@ -5,6 +5,8 @@ import { baseColors, baseFonts } from 'css';
 import { TransitionMotion, spring, presets } from 'react-motion';
 
 export default function taskList({ list = [], deleteItem, checked, input, submit, toggle, blur }) {  
+    //здесь будет фильтрация
+   
     
     return(
         <MainSection>

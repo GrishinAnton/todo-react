@@ -9,7 +9,8 @@ export default class Todo extends React.Component {
     state = {
         tasks: [],
         mainTaskValue: '',
-        toggleLableInput: false
+        toggleLableInput: false,
+        buttonState: ''
     }
 
     render() {
@@ -37,9 +38,14 @@ export default class Todo extends React.Component {
                 <Footer
                     tasks={this.state.tasks}
                     deleteAllTask={this.deleteAllComplitedTask}
+                    filter={this.onChangeFilter}
                     />                
             </Todos>
         )
+    }
+
+    onChangeFilter = (type) => {
+        this.setState({ buttonState: type })
     }
 
     onInputBlur = (e, id) => {
