@@ -18,8 +18,7 @@ export default function taskList({ list = [], deleteItem, checked, input, submit
        if (filter === 'complited') {
             return item.complited === true
         }
-    })
-   
+    })  
    
     
     return(

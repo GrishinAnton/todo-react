@@ -9,7 +9,8 @@ export default function Task({ title, deleteItem, id, checked, complited, input,
 
     function handleClick(id) {        
         toggle(id)     
-        console.log(textInput.current);
+        //фокус не работает...хотя должен, все отрабатывает
+        
         textInput.current.focus()
         
     }
