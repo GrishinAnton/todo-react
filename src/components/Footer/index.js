@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { countTask } from 'helpers'
 import { endingWord } from 'helpers'
 
-export default function Footer({ tasks, deleteAllTask, filter }) {
+export default function Footer({ tasks, deleteAllTask, filter, filterActive }) {
     var count = countTask(tasks);
     var endWord = endingWord(count, 'задача', 'задачи', 'задач');
 
@@ -14,13 +14,13 @@ export default function Footer({ tasks, deleteAllTask, filter }) {
             </FooterCount>
             <FooterList className="footer-panel">
                 <FooterItem>
-                    <button onClick={() => filter('all')}>Все</button>
+                    <button className={filterActive === 'all' ? 'active' : ''} onClick={() => filter('all')}>Все</button>
                 </FooterItem>
                 <FooterItem>
-                    <button onClick={() => filter('active')}>Активные</button>
+                    <button className={filterActive === 'active' ? 'active' : ''} onClick={() => filter('active')}>Активные</button>
                 </FooterItem>
                 <FooterItem>
-                    <button onClick={() => filter('complited')}>Завершенные</button>
+                    <button className={filterActive === 'complited' ? 'active' : ''} onClick={() => filter('complited')}>Завершенные</button>
                 </FooterItem>
             </FooterList>
             <FooterTask className="footer-task-delete">
@@ -59,18 +59,27 @@ const FooterItem = styled.li `
 
     button {
         padding: 3px;       
+        margin-right: 15px; 
+
         color: #777;
         font-size: 14px;
         background-color: transparent;
         border: 1px solid transparent;
-        margin-right: 15px; 
+        outline: none;
 
         transition: all .2s;
 
         &:hover {
             border: 1px solid #2c2c2c;
         }
+
+        &.active {
+            border: 1px solid grey;
+        }
     }
+
+    
+
 
     &:last-child button {
         margin-right: 0;

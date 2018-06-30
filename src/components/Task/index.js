@@ -4,6 +4,15 @@ import { baseColors, baseFonts } from 'css'
 
 export default function Task({ title, deleteItem, id, checked, complited, input, submit, toggle, hide, blur }) {  
     
+    var textInput = React.createRef();
+    
+
+    function handleClick(id) {        
+        toggle(id)     
+        console.log(textInput.current);
+        textInput.current.focus()
+        
+    }
   
     return (
         <Item>
@@ -14,7 +23,7 @@ export default function Task({ title, deleteItem, id, checked, complited, input,
             <Label 
                 complited={complited} 
                 hide={hide}
-                onDoubleClick={(e) => toggle(e,id)} 
+                onDoubleClick={() => handleClick(id)} 
                 className="main-section_label">{title}</Label>
             <ButtonDelete 
                 className="main-section__close" 
@@ -26,6 +35,7 @@ export default function Task({ title, deleteItem, id, checked, complited, input,
                     onBlur={(e) => blur(e, id)} 
                     onChange={(e) => input(e, id)} 
                     value={title} 
+                    innerRef={textInput}
                     hide={hide}
                     name="task" 
                     className="main-section__task-edit" />
@@ -63,6 +73,7 @@ const Label = styled.label `
     z-index: 1;
     text-decoration: ${props => props.complited && 'line-through'};
     display: ${props => props.hide && 'none'};
+    user-select: none;
 `;
 
 const ButtonDelete = styled.button `
@@ -106,5 +117,6 @@ const InputTask = styled.input `
     border: none;
     outline: none;
     z-index: 0;
+    user-select: none;
 
 `;

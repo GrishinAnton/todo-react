@@ -10,12 +10,10 @@ export default class Todo extends React.Component {
         tasks: [],
         mainTaskValue: '',
         toggleLableInput: false,
-        buttonState: ''
+        buttonState: 'all'
     }
 
     render() {
-
-        console.log(this.state);
 
         return (
             <Todos>
@@ -28,6 +26,7 @@ export default class Todo extends React.Component {
                     checked={this.onAllCheckedHandler}/>
                 <TaskList 
                     list={this.state.tasks}
+                    filter={this.state.buttonState}
                     deleteItem={this.deleteTaskhandler}
                     checked={this.onTaskCheckedhandler}
                     submit={this.onSubmitChangeTask}
@@ -39,6 +38,7 @@ export default class Todo extends React.Component {
                     tasks={this.state.tasks}
                     deleteAllTask={this.deleteAllComplitedTask}
                     filter={this.onChangeFilter}
+                    filterActive={this.state.buttonState}
                     />                
             </Todos>
         )
@@ -60,7 +60,8 @@ export default class Todo extends React.Component {
         this.setState({ tasks: state })
     }
 
-    onToggleLableInput = (e, id) => {
+    onToggleLableInput = (id) => {
+        
         var state = this.state.tasks
         for (var i = 0; i < state.length; i++) {
             if (state[i].id === id) {

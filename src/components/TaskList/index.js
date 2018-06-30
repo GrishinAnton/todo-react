@@ -4,14 +4,28 @@ import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css';
 import { TransitionMotion, spring, presets } from 'react-motion';
 
-export default function taskList({ list = [], deleteItem, checked, input, submit, toggle, blur }) {  
+export default function taskList({ list = [], deleteItem, checked, input, submit, toggle, blur, filter }) {  
     //здесь будет фильтрация
+    var filterTasks = list.filter(item => {
+        if (filter === 'all') {
+             return item
+        }
+
+        if (filter === 'active') {
+            return item.complited === false
+        }
+
+       if (filter === 'complited') {
+            return item.complited === true
+        }
+    })
+   
    
     
     return(
         <MainSection>
             <List>
-                {list.map((item, key) => (
+                {filterTasks.map((item, key) => (
                     <Task 
                         key={key} 
                         title={item.title}
