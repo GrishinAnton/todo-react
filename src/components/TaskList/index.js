@@ -2,29 +2,14 @@ import React from 'react';
 import Task from 'components/Task'
 import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css';
-import { TransitionMotion, spring, presets } from 'react-motion';
+import { filterTasks } from 'helpers/';
 
-export default function taskList({ list = [], deleteItem, checked, input, submit, toggle, blur, filter }) {  
-    //здесь будет фильтрация
-    var filterTasks = list.filter(item => {
-        if (filter === 'all') {
-             return item
-        }
-
-        if (filter === 'active') {
-            return item.complited === false
-        }
-
-       if (filter === 'complited') {
-            return item.complited === true
-        }
-    })  
-   
+export default function taskList({ list = [], deleteItem, checked, input, submit, toggle, blur, filter }) {   
     
     return(
         <MainSection>
             <List>
-                {filterTasks.map((item, key) => (
+                {filterTasks(list, filter).map((item, key) => (
                     <Task 
                         key={key} 
                         title={item.title}

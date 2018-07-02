@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css'
 
 export default class Task extends React.Component {
-    
-    // var input = React.createRef();
 
-     handleClick = (id) =>  {  
-
+     handleClick = (id) =>  {
         this.props.toggle(id);
         setTimeout(() => {
             this.input.focus();    
@@ -46,10 +43,8 @@ export default class Task extends React.Component {
                         className="main-section__task-edit" />
                 </InputForm>
             </Item>
-        )
-        
-    }
-   
+        )        
+    }   
 }
 
 const Item = styled.li `
