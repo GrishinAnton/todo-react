@@ -1,6 +1,6 @@
 import React from 'react'; 
 import styled from 'styled-components';
-import { baseColors, baseFonts } from 'css'
+import { baseFonts } from 'css'
 
 export default class Task extends React.Component {
 

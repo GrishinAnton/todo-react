@@ -1,7 +1,7 @@
 import React from 'react';
 import Task from 'components/Task'
 import styled from 'styled-components';
-import { baseColors, baseFonts } from 'css';
+import { baseColors } from 'css';
 import { filterTasks } from 'helpers/';
 
 export default function taskList({ list = [], deleteItem, checked, input, submit, toggle, blur, filter }) {   
