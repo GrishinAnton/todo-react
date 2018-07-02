@@ -2,47 +2,54 @@ import React from 'react';
 import styled from 'styled-components';
 import { baseColors, baseFonts } from 'css'
 
-export default function Task({ title, deleteItem, id, checked, complited, input, submit, toggle, hide, blur }) {  
+export default class Task extends React.Component {
     
-    var textInput = React.createRef();
-    
+    // var input = React.createRef();
 
-    function handleClick(id) {        
-        toggle(id)     
-        //фокус не работает...хотя должен, все отрабатывает
-        
-        textInput.current.focus()
+     handleClick = (id) =>  {  
+
+        this.props.toggle(id);
+        setTimeout(() => {
+            this.input.focus();    
+        }, 0);      
+             
+    }
+
+    render () {       
+
+        let { title, deleteItem, id, checked, complited, input, submit, hide, blur } = this.props
+
+        return (
+            <Item>
+                <InputCheckbox
+                    checked={complited}
+                    onChange={() => checked(id)}
+                    className="main-section__checkbox" type="checkbox" />
+                <Label
+                    complited={complited}
+                    hide={hide}
+                    onDoubleClick={() => this.handleClick(id)}
+                    className="main-section_label">{title}</Label>
+                <ButtonDelete
+                    className="main-section__close"
+                    onClick={() => deleteItem(id)}>
+                </ButtonDelete>
+                <InputForm
+                    onSubmit={(e) => submit(e, id)}>
+                    <InputTask type="text"
+                        onBlur={(e) => blur(e, id)}
+                        onChange={(e) => input(e, id)}
+                        value={title}
+                        innerRef={input => this.input = input}
+                        hide={hide}
+                        name="task"
+                        className="main-section__task-edit" />
+                </InputForm>
+            </Item>
+        )
         
     }
-  
-    return (
-        <Item>
-            <InputCheckbox 
-                checked={complited} 
-                onChange={() => checked(id)} 
-                className="main-section__checkbox" type="checkbox" />
-            <Label 
-                complited={complited} 
-                hide={hide}
-                onDoubleClick={() => handleClick(id)} 
-                className="main-section_label">{title}</Label>
-            <ButtonDelete 
-                className="main-section__close" 
-                onClick={() => deleteItem(id)}>
-            </ButtonDelete>
-            <InputForm 
-                onSubmit={(e) => submit(e,id)}>
-                <InputTask type="text" 
-                    onBlur={(e) => blur(e, id)} 
-                    onChange={(e) => input(e, id)} 
-                    value={title} 
-                    innerRef={textInput}
-                    hide={hide}
-                    name="task" 
-                    className="main-section__task-edit" />
-            </InputForm>
-        </Item>
-    )
+   
 }
 
 const Item = styled.li `
@@ -111,12 +118,13 @@ const InputTask = styled.input `
     height: 100%;
 
     ${baseFonts}
-    display: none;
+    /* display: none; */
+    visibility: hidden;
 
-    display: ${props => props.hide && 'block'};
+    visibility: ${props => props.hide && 'visible'};
 
     border: none;
-    outline: none;
+    /* outline: none; */
     z-index: 0;
     user-select: none;
 
